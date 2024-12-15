@@ -1,4 +1,4 @@
-# Frases del Repart API 🍫
+# Frases de ChocolateMC API 🍫
 
 <div align="center">
 
@@ -9,19 +9,11 @@
 [![License][license-badge]][license-url]
 [![PRs Welcome][prs-badge]][prs-url]
 
-_An example API to manage your cats, built with NestJS and TypeScript_
+_An API to expose ChocolateMC famous phrases, built with NestJS and TypeScript_
 
 [🚀 Getting Started](#-getting-started) | [🛠️ Tech Stack](#-tech-stack) | [📄 API Endpoints](#-api-endpoints)
 
 </div>
-
-## ✨ Features
-
-- **User Authentication**: Secure login and registration with JWT.
-- **Cat Management**: Create, read, update, and delete cat records.
-- **Breed Management**: Manage different breeds of cats.
-- **Pagination & Filtering**: Efficiently retrieve data with pagination and search capabilities.
-- **Role-Based Access**: Control access based on user roles.
 
 ## 🛠️ Tech Stack
 
@@ -45,10 +37,10 @@ _An example API to manage your cats, built with NestJS and TypeScript_
 
 ```bash
 # Clone the repository
-git clone https://github.com/EduardoProfe666/cats-management-api
+git clone https://github.com/EduardoProfe666/choco-frases-api
 
 # Navigate to project directory
-cd cats-management-api
+cd choco-frases-api
 
 # Install dependencies
 pnpm install
@@ -72,25 +64,12 @@ pnpm run start:prod
 
 ## 📄 API Endpoints
 
-Here are the available API endpoints for managing cats and users:
+Here are the public available API endpoints for choco phrases:
 
-| Method      | Endpoint                     | Description                                          |
-|-------------|------------------------------|------------------------------------------------------|
-| POST        | `/v1/auth/login`             | Authenticate into the system                         |
-| POST        | `/v1/auth/register`          | Register a new user                                  |
-| POST        | `/v1/auth/change-password`   | Change current user password                         |
-| POST        | `/v1/auth/refresh`           | Refresh tokens                                       |
-| GET         | `/v1/cats`                   | Get all cats                                        |
-| POST        | `/v1/cats`                   | Create a new cat                                    |
-| GET         | `/v1/cats/me`                | Get the current user's cats                          |
-| GET         | `/v1/cats/{id}`              | Get a cat by its ID                                 |
-| PUT         | `/v1/cats/{id}`              | Update a cat of the current user                    |
-| DELETE      | `/v1/cats/{id}`              | Delete a cat of the current user                    |
-| GET         | `/v1/breeds`                 | Get all breeds                                      |
-| POST        | `/v1/breeds`                 | Create a new breed                                   |
-| GET         | `/v1/breeds/{id}`            | Get a breed by its ID                                |
-| PATCH       | `/v1/breeds/{id}`            | Update a breed by its ID                             |
-| DELETE      | `/v1/breeds/{id}`            | Delete a breed by its ID                             |
+| Method | Endpoint           | Description         |
+|--------|--------------------|---------------------|
+| GET    | `/v1/phrases`      | Get all phrases     |
+| GET    | `/v1/phrases/{id}` | Get a cat by its ID |
 
 ## 🤝 Contributing
 
@@ -117,10 +96,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <!-- MARKDOWN LINKS & BADGES -->
 
 [nestjs-badge]: https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white
+
 [nestjs-url]: https://nestjs.com/
+
 [ts-badge]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+
 [ts-url]: https://www.typescriptlang.org/
+
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge
+
 [license-url]: https://opensource.org/licenses/MIT
+
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge
+
 [prs-url]: http://makeapullrequest.com
