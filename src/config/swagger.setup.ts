@@ -1,14 +1,14 @@
-import * as basicAuth from "express-basic-auth";
+import * as basicAuth from 'express-basic-auth';
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 export default function setupSwagger(app: INestApplication, swaggerPath: string) {
-  const swaggerPassword = app.get(ConfigService).get('SWAGGER_PASSWORD');
+  const swaggerPassword = app.get(ConfigService).get('ADMIN_PASSWORD');
 
   const options = new DocumentBuilder()
-    .setTitle('Cats Management API')
-    .setDescription('### API to manage your Cats.')
+    .setTitle('Choco Frases API')
+    .setDescription('### API que brinda frases de ChocolateMC.')
     .setLicense('MIT', 'https://opensource.org/license/mit')
     .setVersion('1.0.0')
     .addBearerAuth()
@@ -30,17 +30,16 @@ export default function setupSwagger(app: INestApplication, swaggerPath: string)
   });
   doc.components.schemas = sortedSchemas;
 
-  if (process.env.NODE_ENV !== 'development') {
-    app.use(
-      [swaggerPath, `${swaggerPath}-json`],
-      basicAuth({
-        challenge: true,
-        users: {
-          gatico: swaggerPassword,
-        },
-      }),
-    );
-  }
+  app.use(
+    [swaggerPath, `${swaggerPath}-json`],
+    basicAuth({
+      challenge: true,
+      users: {
+        chocolate: swaggerPassword,
+      },
+    }),
+  );
+
 
   SwaggerModule.setup(swaggerPath, app, doc);
 }

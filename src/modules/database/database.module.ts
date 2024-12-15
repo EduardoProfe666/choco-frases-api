@@ -2,10 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import PgService from './services/pg.service';
-import Cat from './entities/cat.entity';
-import Breed from './entities/breed.entity';
-import RefreshToken from './entities/refresh-token.entity';
-import User from './entities/user.entity';
+import Phrase from './entities/phrase.entity';
 
 
 @Module({
@@ -22,18 +19,12 @@ import User from './entities/user.entity';
         database: config.get<string>('DB_DATABASE'),
         synchronize: true,
         entities: [
-          Breed,
-          Cat,
-          RefreshToken,
-          User,
+          Phrase
         ],
       }),
     }),
     TypeOrmModule.forFeature([
-      Breed,
-      Cat,
-      RefreshToken,
-      User,
+      Phrase
     ]),
   ],
   exports: [PgService],

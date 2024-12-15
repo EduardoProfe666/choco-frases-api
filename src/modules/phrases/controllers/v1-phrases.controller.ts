@@ -4,9 +4,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
-  Patch,
-  Post,
-  Query,
+  Post, Put,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -20,66 +18,53 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../../common/guards/roles.guard';
-import BreedsService from '../services/breeds.service';
-import BreedOutDto from '../dto/out/breed.out.dto';
-import PaginatedOutDto from '../../../common/dto/pagination/paginated.out.dto';
-import BreedSearchInDto from '../dto/in/breed.search.in.dto';
+import PhrasesService from '../services/phrases.service';
+import PhraseOutDto from '../dto/out/phrase.out.dto';
 import { Role, Roles } from '../../../common/decorators/roles.decorator';
-import BreedInDto from '../dto/in/breed.in.dto';
-import BreedUpdateInDto from '../dto/in/breed.update.in.dto';
+import PhraseInDto from '../dto/in/phrase.in.dto';
+import PhraseUpdateInDto from '../dto/in/phrase.update.in.dto';
 
-@Controller('v1/breeds')
-@ApiTags('breeds')
-export default class V1BreedsController {
+@Controller('v1/phrases')
+@ApiTags('phrases')
+export default class V1PhrasesController {
   constructor(
-    private readonly breedService: BreedsService,
+    private readonly phrasesService: PhrasesService,
   ) {}
 
   @Get('')
-  @ApiOkResponse({ description: 'Ok', type: [BreedOutDto] })
-  @ApiOperation({ summary: 'Get all Breeds' })
+  @ApiOkResponse({ description: 'Ok', type: [PhraseOutDto] })
+  @ApiOperation({ summary: 'Get all Phrases' })
   async getAll() {
-    return this.breedService.getAll();
-  }
-
-  @Get('/search')
-  @ApiOkResponse({ description: 'Ok', type: PaginatedOutDto<BreedOutDto> })
-  @ApiOperation({
-    summary: 'Get Breeds with Filtering, Ordering and Pagination',
-  })
-  async get(
-    @Query() dto: BreedSearchInDto,
-  ): Promise<PaginatedOutDto<BreedOutDto>> {
-    return this.breedService.search(dto);
+    return this.phrasesService.getAll();
   }
 
   @Get('/:id')
-  @ApiOkResponse({ description: 'Ok', type: BreedOutDto })
+  @ApiOkResponse({ description: 'Ok', type: PhraseOutDto })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
-  @ApiOperation({ summary: 'Get a Breed by its id' })
+  @ApiOperation({ summary: 'Get a Phrase by its id' })
   async getById(@Param('id', ParseIntPipe) id: number) {
-    return this.breedService.getById(id);
+    return this.phrasesService.getById(id);
   }
 
   @Post('')
   @Roles(Role.Admin)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ description: 'Ok', type: BreedOutDto })
+  @ApiCreatedResponse({ description: 'Ok', type: PhraseOutDto })
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({
     description:
-      'Conflict (Other Breed with Name)',
+      'Conflict (Other Phrase with Name)',
   })
-  @ApiOperation({ summary: 'Create a new Breed if does not exist' })
-  async post(@Body() dto: BreedInDto) {
-    return this.breedService.post(dto);
+  @ApiOperation({ summary: 'Create a new Phrase if does not exist' })
+  async post(@Body() dto: PhraseInDto) {
+    return this.phrasesService.post(dto);
   }
 
-  @Patch('/:id')
+  @Put('/:id')
   @Roles(Role.Admin)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth()
@@ -90,14 +75,14 @@ export default class V1BreedsController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiConflictResponse({
     description:
-      'Conflict (Other breed with Name)',
+      'Conflict (Other phrase with Message)',
   })
-  @ApiOperation({ summary: 'Update a Breed by its id' })
+  @ApiOperation({ summary: 'Update a Phrase by its id' })
   async put(
     @Param('id', ParseIntPipe) id: number,
-    @Body() dto: BreedUpdateInDto,
+    @Body() dto: PhraseUpdateInDto,
   ) {
-    return this.breedService.patch(id, dto);
+    return this.phrasesService.put(id, dto);
   }
 
 
@@ -110,8 +95,8 @@ export default class V1BreedsController {
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiOperation({ summary: 'Delete PERMANENTLY a Breed by its id. For better integrity change isActive in PATCH' })
+  @ApiOperation({ summary: 'Delete a Phrase by its id.' })
   async delete(@Param('id', ParseIntPipe) id: number) {
-    return this.breedService.delete(id);
+    return this.phrasesService.delete(id);
   }
 }

@@ -5,10 +5,10 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export default class BreedInDto {
+export default class PhraseInDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @MaxLength(50)
-  name: string;
+  @MaxLength(1000)
+  message: string;
 }

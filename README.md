@@ -1,8 +1,8 @@
-# Cat Management API 🐾
+# Frases del Repart API 🍫
 
 <div align="center">
 
-![Cat](/assets/banner.png)
+![Choco](/assets/banner.png)
 
 [![Made with NestJS][nestjs-badge]][nestjs-url]
 [![TypeScript][ts-badge]][ts-url]

@@ -1,7 +1,6 @@
 import { SetMetadata } from '@nestjs/common';
 
 export enum Role {
-  Owner = 'owner',
   Admin = 'admin',
 }
 

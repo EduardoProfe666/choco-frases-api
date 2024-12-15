@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export default class CatUserOutDto {
+export default class PhraseOutDto {
   @ApiProperty()
   id: number;
 
   @ApiProperty()
-  name: string;
+  message: string;
 }
