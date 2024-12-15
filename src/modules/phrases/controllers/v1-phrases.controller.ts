@@ -1,16 +1,11 @@
-import {
-  Body,
-  Controller, Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post, Put,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseGuards } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
-  ApiBearerAuth, ApiConflictResponse, ApiCreatedResponse,
-  ApiForbiddenResponse, ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiTags,

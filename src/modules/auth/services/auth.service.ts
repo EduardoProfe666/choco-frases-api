@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  Logger,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Role } from '../../../common/decorators/roles.decorator';
 import { ConfigService } from '@nestjs/config';
